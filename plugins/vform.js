@@ -1,9 +1,11 @@
 import Vue from 'vue';
-import {Form, HasError, AlertError, AlertSuccess} from 'vform';
-
+import Form from 'vform';
+import HasError from 'vform';
+import AlertError from 'vform';
+import AlertSuccess from 'vform';
 Vue.component(HasError.name, HasError);
-Vue.component(AlertError.name, AlertError);
 Vue.component(AlertSuccess.name, AlertSuccess);
+Vue.component(AlertError.name, AlertError);
 
 export default ({ app }, inject) => {
   Form.prototype.submit = function submit(method, url, config = {}) {

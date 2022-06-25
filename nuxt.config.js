@@ -1,4 +1,4 @@
-import plugin from "@nuxtjs/auth-next/templates/plugin";
+
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -31,7 +31,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~plugins/vform'
+    '~plugins/vform',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -72,13 +72,29 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/toast'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.API_URL,
+    baseURL: process.env["API_URL"],
+  },
+
+  toast: {
+    position: 'top-center',
+    duration: 3000,
+    keepOnHover: true,
+    // register: [ // Register custom toasts
+    //   {
+    //     name: 'my-error',
+    //     message: 'Oops...Something went wrong',
+    //     options: {
+    //       type: 'error'
+    //     }
+    //   }
+    // ]
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
