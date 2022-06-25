@@ -9,6 +9,7 @@ const routes = [
   {path: '/login', name: 'login', component: page('auth/login.vue')},
   {path: '/register', name: 'register', component: page('auth/register.vue')},
   {path: '/verification/verify/:id', name: 'verify', component: page('auth/verification/verify.vue')},
+  {path: '/verification/resend', name: 'verification.resend', component: page('auth/verification/resend.vue')},
 ];
 
 export function createRouter() {
