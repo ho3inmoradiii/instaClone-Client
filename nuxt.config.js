@@ -45,21 +45,16 @@ export default {
   auth: {
     strategies: {
       local: {
-        // token: {
-        //   property: 'token',
-        //   global: true,
-        //   // required: true,
-        //   // type: 'Bearer'
-        // },
-        // user: {
-        //   property: 'user',
-        //   // autoFetch: true
-        // },
+        user: {
+          property: ''
+        },
         endpoints: {
           login: { url: '/login', method: 'post' },
           logout: { url: '/logout', method: 'post' },
           user: { url: '/me', method: 'get' }
         }
+        // tokenRequired: true,
+        // tokenType: 'bearer'
       }
     }
   },

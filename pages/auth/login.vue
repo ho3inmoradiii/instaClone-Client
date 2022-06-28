@@ -65,15 +65,25 @@
           }
         },
       methods:{
-          submitLogin(){
-            this.$auth.loginWith('local',{data: this.form})
-              .then(res => console.log(res))
-              .catch(err => {
-                this.$toast.error('شما باید ایمیل خود را فعال کنید')
-                console.log(err.response.data.errors)
-                this.form.errors.set(err.response.data.errors)
+          async submitLogin(){
+            // this.$axios.post(`login`,this.form)
+            const successfulLogin = await this.$auth.loginWith('local', {
+                data: this.form
+              }).then(res => {
+                  this.$toast.success('ورود موفقیت آمیز')
+              }).catch(err => {
+                  this.form.errors.set(err.response.data.errors)
+                  if (this.form.errors.has('verification')){
+                    this.$toast.error('شما باید ایمیل خود را فعال کنید')
+                  }
+              });
+
+            if (successfulLogin) {
+              await this.$auth.setUser({
+                email: this.form.email,
+                password: this.form.password,
               })
-            // this.form.post('login')
+            }
 
           }
       }

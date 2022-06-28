@@ -101,7 +101,7 @@
                 Setting
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="#" @click.prevent="logout">
                 <i class="fa fa-lock"></i>
                 Sign Out
               </a>
@@ -118,7 +118,9 @@
 <script>
 export default {
   methods: {
-
+    logout(){
+      this.$auth.logout();
+    }
   }
 };
 </script>
