@@ -29,9 +29,10 @@
           <div v-if="form.errors.has('password')" v-html="form.errors.get('password')" class="text-danger font-13 mt-1 text-right dir-rtl" />
         </div>
         <div class="mt-4 mb-4 clearfix text-right">
-          <a class="forgot-pass color-blue font-14 fw-400" href="#">
-            رمز عبور خود را فراموش کرده اید؟
-          </a>
+          رمز عبور خود را فراموش کرده اید؟
+          <nuxt-link :to="{ name: 'password.email' }" class="color-blue font-14 fw-400">
+            بازیابی رمز عبور
+          </nuxt-link>
         </div>
         <div class="text-right">
           <button class="btn-block btn-primary btn-sm" :disabled="form.busy">
