@@ -32,6 +32,7 @@
 <script>
   import Form from 'vform';
   export default {
+    middleware: ['guest'],
     name: "resend",
     data(){
       return{

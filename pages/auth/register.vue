@@ -83,6 +83,7 @@
 <script>
     import Form from 'vform';
     export default {
+      middleware: ['guest'],
         name: "register",
         data(){
           return{

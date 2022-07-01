@@ -9,14 +9,18 @@
           <nuxt-link :to="{name: 'verification.resend'}" v-if="form.errors.has('verification')">ارسال مجدد لینک فعالسازی</nuxt-link>
         </div>
         <div class="form-group">
-          <input
-            type="email"
-            placeholder="ایمیل"
-            v-model.trim="form.email"
-            class="form-control form-control-lg font-14 fw-300"
-            :class="{ 'is-invalid': form.errors.has('email') }"
-          >
-          <div v-if="form.errors.has('email')" v-html="form.errors.get('email')" class="text-danger font-13 mt-1 text-right dir-rtl" />
+          <BaseInput :form="form"
+                     field="email"
+                     v-model="form.email"
+                     placeholder="ایمیل خود را وارد کنید"/>
+<!--          <input-->
+<!--            type="email"-->
+<!--            placeholder="ایمیل"-->
+<!--            v-model.trim="form.email"-->
+<!--            class="form-control form-control-lg font-14 fw-300"-->
+<!--            :class="{ 'is-invalid': form.errors.has('email') }"-->
+<!--          >-->
+<!--          <div v-if="form.errors.has('email')" v-html="form.errors.get('email')" class="text-danger font-13 mt-1 text-right dir-rtl" />-->
         </div>
         <div class="form-group">
           <input
@@ -35,12 +39,16 @@
           </nuxt-link>
         </div>
         <div class="text-right">
-          <button class="btn-block btn-primary btn-sm" :disabled="form.busy">
-            <span v-if="form.busy">
-              <i class="fas fa-spinner fa-spin"></i>
-            </span>
+          <BaseButton :block="true" :loading="form.busy">
             ورود
-          </button>
+          </BaseButton>
+<!--          <BaseButton></BaseButton>-->
+<!--          <button class="btn-block btn-primary btn-sm" :disabled="form.busy">-->
+<!--            <span v-if="form.busy">-->
+<!--              <i class="fas fa-spinner fa-spin"></i>-->
+<!--            </span>-->
+<!--            ورود-->
+<!--          </button>-->
         </div>
         <p class="font-14 fw-400 text-center mt-4">
           حساب کاربری ندارید؟
@@ -55,9 +63,13 @@
 
 <script>
   import Form from 'vform';
+  import BaseButton from "~/components/global/buttons/BaseButton";
+  import BaseInput from "~/components/global/inputs/BaseInput";
     export default {
-        name: "login",
-        data(){
+      middleware: ['guest'],
+      name: "login",
+      components: {BaseButton,BaseInput},
+      data(){
           return{
             form: new Form({
               email: '',
