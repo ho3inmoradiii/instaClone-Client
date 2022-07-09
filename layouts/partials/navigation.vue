@@ -39,9 +39,9 @@
           </form>
         </div>
         <div class="upload-shot white-path font-14 fw-500 text-uppercase mr-auto">
-          <a href="/upload" class="primary-bg-color text-white">
-            <i class="fas fa-cloud-upload-alt"></i> Upload
-          </a>
+          <nuxt-link :to="{ name: 'design.upload' }" class="primary-bg-color text-white">
+            <i class="fas fa-cloud-upload-alt"></i> آپلود
+          </nuxt-link>
         </div>
       </div>
 
@@ -88,18 +88,18 @@
               <div class="dropdown-title-group font-12 fw-500">
                 <span class="dropdown-title text-uppercase">Your Account</span>
               </div>
-              <nuxt-link to="/settings/dashboard" class="dropdown-item mt-28">
+              <nuxt-link :to="{ name: 'settings.dashboard' }" class="dropdown-item mt-28">
                 <i class="fas fa-tachometer-alt"></i>
-                Dashboard
+                داشبورد
               </nuxt-link>
-              <a class="dropdown-item" href="#" title="Profile">
+              <nuxt-link class="dropdown-item" :to="{ name: 'settings.profile' }" title="Profile">
                 <i class="fa fa-user"></i>
-                Profile
-              </a>
-              <a class="dropdown-item" href="#" title="Setting">
-                <i class="fa fa-cogs"></i>
-                Setting
-              </a>
+                پروفایل
+              </nuxt-link>
+<!--              <nuxt-link :to="{ name: '' }" class="dropdown-item" href="#" title="Setting">-->
+<!--                <i class="fa fa-cogs"></i>-->
+<!--                Setting-->
+<!--              </nuxt-link>-->
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" @click.prevent="logout">
                 <i class="fa fa-lock"></i>
