@@ -103,10 +103,10 @@
                       <div v-if="form.errors.has('team')" v-html="form.errors.get('team')" class="text-danger font-13 mt-1 text-right dir-rtl" />
                     </div>
                   </template>
-                  <div class="text-left">
-<!--                    <nuxt-link :to="{ name: 'settings.designs' }"-->
-<!--                    >Cancel</nuxt-link-->
-<!--                    >-->
+                  <div class="text-left d-flex justify-content-between">
+                    <nuxt-link :to="{ name: 'settings.designs' }">
+                      لغو
+                    </nuxt-link>
                     <BaseButton :loading="form.busy">
                       تایید
                     </BaseButton>
@@ -199,7 +199,7 @@
                 this.stat = true;
                 // console.log(res)
                 setTimeout( () => {
-                  this.$router.push({ name: 'settings.dashboard' })
+                  this.$router.push({ name: 'settings.designs' })
                 },1000);
               })
               .catch(err => console.log(err))

@@ -42,7 +42,7 @@
           links: [
             { title: 'داشبورد', route: 'settings.dashboard' },
             { title: 'آپدیت پروفایل', route: 'settings.profile' },
-            //{ title: 'Designs', route: 'settings.designs' }
+            { title: 'طرح های آپلود شده', route: 'settings.designs' }
           ]
         };
       }
