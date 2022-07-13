@@ -37,6 +37,7 @@ const routes = [
       },
     ]
   },
+  {path: '/designs', name: 'designs.search', component: page('designs/search.vue')},
 ];
 
 export function createRouter() {
