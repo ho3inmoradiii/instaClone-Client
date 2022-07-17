@@ -78,7 +78,7 @@ export default {
   },
 
   toast: {
-    position: 'top-center',
+    position: 'bottom-center',
     duration: 3000,
     keepOnHover: true,
     // register: [ // Register custom toasts
