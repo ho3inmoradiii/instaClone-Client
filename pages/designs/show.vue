@@ -100,7 +100,7 @@
                 <!-- End Designer info -->
                 <!-- Designer Design Info -->
                 <ul class="details-side-meta font-14 fw-400">
-<!--                  <DesignLike :design="design"></DesignLike>-->
+                  <DesignLike :design="design" @likeAble="changeLikeCount"></DesignLike>
 
                   <li class="d-table w-100">
                     <div class="stats-txt d-table-cell w-100">
@@ -109,66 +109,66 @@
                   </li>
                 </ul>
                 <!-- End Designer Design Info -->
-                <!-- Designer More Designs -->
-<!--                <div class="more-designs-outer pb-3">-->
-<!--                  <ul class="more-designs row">-->
-<!--                    <li class="col-md-6">-->
-<!--                      <a href="#">-->
-<!--                        <img-->
-<!--                          class="w-100"-->
-<!--                          src="~assets/images/among_trees_night_dribbble.png"-->
-<!--                          alt="Image"-->
-<!--                        />-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li class="col-md-6">-->
-<!--                      <a href="#">-->
-<!--                        <img-->
-<!--                          class="w-100"-->
-<!--                          src="~assets/images/among_trees_night_dribbble.png"-->
-<!--                          alt="Image"-->
-<!--                        />-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li class="col-md-6">-->
-<!--                      <a href="#">-->
-<!--                        <img-->
-<!--                          class="w-100"-->
-<!--                          src="~assets/images/among_trees_night_dribbble.png"-->
-<!--                          alt="Image"-->
-<!--                        />-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li class="col-md-6">-->
-<!--                      <a href="#">-->
-<!--                        <img-->
-<!--                          class="w-100"-->
-<!--                          src="~assets/images/among_trees_night_dribbble.png"-->
-<!--                          alt="Image"-->
-<!--                        />-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-                <!-- End Designer More Designs -->
+<!--                 Designer More Designs -->
+                <div class="more-designs-outer pb-3">
+                  <ul class="more-designs row">
+                    <li class="col-md-6">
+                      <a href="#">
+                        <img
+                          class="w-100"
+                          src="~assets/images/among_trees_night_dribbble.png"
+                          alt="Image"
+                        />
+                      </a>
+                    </li>
+                    <li class="col-md-6">
+                      <a href="#">
+                        <img
+                          class="w-100"
+                          src="~assets/images/among_trees_night_dribbble.png"
+                          alt="Image"
+                        />
+                      </a>
+                    </li>
+                    <li class="col-md-6">
+                      <a href="#">
+                        <img
+                          class="w-100"
+                          src="~assets/images/among_trees_night_dribbble.png"
+                          alt="Image"
+                        />
+                      </a>
+                    </li>
+                    <li class="col-md-6">
+                      <a href="#">
+                        <img
+                          class="w-100"
+                          src="~assets/images/among_trees_night_dribbble.png"
+                          alt="Image"
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+<!--                 End Designer More Designs-->
                 <!-- Designs Tags -->
-<!--                <div class="designs-tag-outer mt-3">-->
-<!--                  <h2 class="font-16 fw-500 mb-2">-->
-<!--                    Tags-->
-<!--                  </h2>-->
-<!--                  <div-->
-<!--                    class="designs-tag font-14 fw-300"-->
-<!--                    v-if="design.tag_list"-->
-<!--                  >-->
-<!--                    <a-->
-<!--                      v-for="(tag, i) in design.tag_list.tags"-->
-<!--                      :key="`tag-${i}`"-->
-<!--                      :href="`/tags/${design.tag_list.normalized[i]}`"-->
-<!--                    >-->
-<!--                      {{ tag }}-->
-<!--                    </a>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <div class="designs-tag-outer mt-3">
+                  <h2 class="font-16 fw-500 mb-2">
+                    تگ ها
+                  </h2>
+                  <div
+                    class="designs-tag font-14 fw-300"
+                    v-if="design.tag_list"
+                  >
+                    <a
+                      v-for="(tag, i) in design.tag_list.tags"
+                      :key="`tag-${i}`"
+                      :href="`/tags/${design.tag_list.normalized[i]}`"
+                    >
+                      {{ tag }}
+                    </a>
+                  </div>
+                </div>
                 <!-- End Designs Tags -->
               </div>
             </div>
@@ -185,6 +185,7 @@
   import BaseTextarea from "~/components/global/inputs/BaseTextarea";
   import BaseButton from "~/components/global/buttons/BaseButton";
   import Form from 'vform';
+  import DesignLike from "~/components/DesignLike";
     export default {
       name: "show",
       data(){
@@ -194,7 +195,7 @@
           }),
         }
       },
-      components:{ DesignComment,BaseTextarea,BaseButton },
+      components:{ DesignComment,BaseTextarea,BaseButton,DesignLike },
       async asyncData({ params, $axios }) {
         const data = await $axios.$get(`/designs/slug/${params.slug}`)
         return { design: data.data, comments:data.data.comments }
@@ -211,6 +212,9 @@
             this.comments = [...this.comments,res.data.data]
           })
           .catch(err => console.log(err))
+        },
+        changeLikeCount(num){
+          this.design.likes_count = this.design.likes_count + num;
         }
       }
     }
